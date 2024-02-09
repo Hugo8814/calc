@@ -35,6 +35,13 @@ html {
   justify-content: center;
   align-items: center; }
 
+#display {
+  color: white;
+  font-size: 5.5rem;
+  font-weight: 700;
+  text-align: right;
+  padding-right: 3rem; }
+
 .calc {
   width: 60rem;
   height: 70rem;
@@ -68,7 +75,8 @@ html {
       font-family: "League Spartan", sans-serif;
       font-weight: 700;
       border: none;
-      border-radius: 1rem; }
+      border-radius: 1rem;
+      box-shadow: 0px 6px 0px 0.5px #ac9d91; }
       .calc__numPad__btn:hover {
         filter: brightness(70%); }
       .calc__numPad__btn-num1 {
@@ -94,6 +102,7 @@ html {
       .calc__numPad__btn-del {
         grid-area: del;
         background-color: var(--key-background2);
+        box-shadow: 0px 6px 0px 0.5px var(--key-shadow2);
         color: white; }
       .calc__numPad__btn-plus {
         grid-area: plus; }
@@ -108,8 +117,10 @@ html {
       .calc__numPad__btn-resets {
         grid-area: resets;
         background-color: var(--key-background2);
+        box-shadow: 0px 6px 0px 0.5px var(--key-shadow2);
         color: white; }
       .calc__numPad__btn-equals {
         grid-area: equals;
         background-color: var(--red-key-background);
+        box-shadow: 0px 6px 0px 0.5px var(--red-key-shadow);
         color: white; }

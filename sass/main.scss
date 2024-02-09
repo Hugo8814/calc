@@ -42,6 +42,14 @@ html {
   justify-content: center;
   align-items: center;
 }
+#display {
+  color: white;
+  font-size: 5.5rem;
+  font-weight: 700;
+  text-align: right;
+  padding-right: 3rem;
+}
+
 .calc {
   width: 60rem;
   height: 70rem;
@@ -82,6 +90,8 @@ html {
       font-weight: 700;
       border: none;
       border-radius: 1rem;
+      box-shadow: 0px 6px 0px 0.5px hsl(28, 14%, 62%);
+
       &:hover {
         filter: brightness(70%);
       }
@@ -119,6 +129,8 @@ html {
       &-del {
         grid-area: del;
         background-color: var(--key-background2);
+        box-shadow: 0px 6px 0px 0.5px var(--key-shadow2);
+
         color: white;
       }
       &-plus {
@@ -139,11 +151,14 @@ html {
       &-resets {
         grid-area: resets;
         background-color: var(--key-background2);
+        box-shadow: 0px 6px 0px 0.5px var(--key-shadow2);
         color: white;
       }
       &-equals {
         grid-area: equals;
         background-color: var(--red-key-background);
+        box-shadow: 0px 6px 0px 0.5px var(--red-key-shadow);
+
         color: white;
       }
     }
