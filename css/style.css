@@ -48,7 +48,7 @@ html {
   background-color: var(--main-background);
   display: flex;
   flex-direction: column;
-  gap: 2rem; }
+  gap: 5rem; }
   .calc__display {
     background: var(--keypad-background);
     width: 100%;
