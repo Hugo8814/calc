@@ -1,3 +1,5 @@
+"use strict";
+
 const display = document.getElementById("display");
 const num = document.querySelectorAll(".num");
 const ops = document.querySelectorAll(".ops");
@@ -7,11 +9,19 @@ const del = document.querySelector(".calc__numPad__btn-del");
 
 function calc() {
   try {
-    const result = eval(currentInput);
+    // Replace 'x' with '*' in currentInput for evaluation
+    const sanitizedInput = currentInput.replace(/x/g, "*");
+
+    // Evaluate the sanitized input
+    const result = eval(sanitizedInput);
+
+    // Display the result
     display.value = result;
-    currentInput = result.toString();
   } catch (error) {
+    // Display error message
     display.value = "Error";
+
+    // Log the error to console
     console.error(error);
   }
 }
@@ -20,23 +30,22 @@ ops.forEach((button) => {
   button.addEventListener("click", () => {
     const buttonText = button.textContent.trim();
     let operator;
-    if (buttonText === "x") {
-      // Use '*' internally for calculation
-      operator = "*";
-    } else if (/[+\-*/%.]/.test(buttonText)) {
+
+    if (/[+\-*/%.xX]/.test(buttonText)) {
       // If it's any other operator, assign the button's text directly
       operator = " " + buttonText + " ";
     } else {
       // If it's a number or any other character, parse it as a float
       operator = parseFloat(buttonText);
     }
-
-    displayNum(buttonText);
-    console.log(buttonText); // Display the button's text ('x' will be displayed)
-    currentInput += operator; // Use the corresponding operator for calculation
+    displayNum(operator);
+    console.log("button text =", buttonText);
+    console.log("current input =", currentInput); // Display the button's text ('x' will be displayed)
+    // Use the corresponding operator for calculation
   });
 });
 let currentInput = "";
+
 const displayNum = function (value) {
   currentInput += value;
   display.value += value;
@@ -51,7 +60,7 @@ display.addEventListener("input", function () {
 });
 
 function validateInput(input) {
-  input.value = input.value.replace(/[^0-9+\-*/().%]/g, "");
+  input.value = input.value.replace(/[^0-9+\-*/().%xX]/g, "");
 }
 
 num.forEach((button) => {
@@ -68,4 +77,8 @@ del.addEventListener("click", function () {
   display.value = display.value.slice(0, -1);
 });
 
-equals.addEventListener("click", calc);
+equals.addEventListener("click", function () {
+  calc();
+  currentInput = display.value; // Update currentInput with the result
+  display.value = currentInput; // Display the result
+});
